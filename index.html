@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Francis Ordeniza — Social Media Manager & AI Content Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --cream: #FDF8ED;
+    --yellow: #F5C842;
+    --yellow-dark: #D4A817;
+    --black: #111010;
+    --gray: #2A2A2A;
+    --gray-mid: #888;
+    --grid-color: rgba(0,0,0,0.07);
+    --white: #fff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  * { position: relative; z-index: 1; }
+
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 4rem;
+    border-bottom: 1.5px solid var(--black);
+    background: var(--cream);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--yellow-dark); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--yellow) !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 2px;
+  }
+  .nav-cta:hover { background: var(--gray) !important; color: var(--yellow) !important; }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 92vh;
+    border-bottom: 1.5px solid var(--black);
+  }
+
+  .hero-left {
+    padding: 4rem 4rem 4rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1.5px solid var(--black);
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+    border: 1.5px solid var(--black);
+    padding: 0.35rem 0.75rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+    background: var(--yellow);
+  }
+
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-name span {
+    display: block;
+    color: var(--yellow-dark);
+    -webkit-text-stroke: 1.5px var(--black);
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--gray);
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--yellow);
+    padding: 0.8rem 2rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 1.5px solid var(--black);
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--yellow); color: var(--black); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--black);
+    padding: 0.8rem 2rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 1.5px solid var(--black);
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: var(--black); color: var(--yellow); }
+
+  /* Hero stats strip */
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0,0,0,0.15);
+  }
+  .stat-item { text-align: left; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--black);
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(245,200,66,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,200,66,0.07) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .hero-photo-wrap {
+    position: relative;
+    width: 340px;
+    height: 420px;
+  }
+
+  .hero-photo-border {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--yellow);
+    border-radius: 4px;
+  }
+
+  .hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-photo-label {
+    position: absolute;
+    bottom: -16px;
+    right: -16px;
+    background: var(--yellow);
+    color: var(--black);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    padding: 0.4rem 0.9rem;
+    border: 1.5px solid var(--black);
+    z-index: 3;
+  }
+
+  /* SECTION STYLES */
+  section { border-bottom: 1.5px solid var(--black); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 4rem;
+    border-bottom: 1.5px solid var(--black);
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gray-mid);
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.06em;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--black);
+    opacity: 0.2;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .service-card {
+    padding: 2.5rem 2.5rem;
+    border-right: 1.5px solid var(--black);
+    transition: background 0.2s;
+  }
+  .service-card:last-child { border-right: none; }
+  .service-card:hover { background: var(--yellow); }
+
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .service-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  .service-desc {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--gray);
+    font-weight: 300;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.25rem;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--black);
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    color: var(--black);
+  }
+
+  /* TOOLS */
+  .tools-section { padding: 2.5rem 4rem; }
+  .tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+  .tool-pill {
+    background: var(--black);
+    color: var(--yellow);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 0.4rem 0.9rem;
+    border-radius: 2px;
+  }
+
+  /* PORTFOLIO TABS */
+  .portfolio-tabs {
+    display: flex;
+    border-bottom: 1.5px solid var(--black);
+    overflow-x: auto;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    border-right: 1.5px solid var(--black);
+    padding: 1rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--gray-mid);
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .tab-btn:hover { background: var(--yellow); color: var(--black); }
+  .tab-btn.active { background: var(--black); color: var(--yellow); }
+
+  .tab-panel { display: none; padding: 3rem 4rem; }
+  .tab-panel.active { display: block; }
+
+  /* MOOD BOARDS */
+  .mood-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--black);
+    border: 1.5px solid var(--black);
+  }
+  .mood-item {
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--cream);
+  }
+  .mood-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .mood-item:hover img { transform: scale(1.05); }
+
+  /* SOCIAL POSTS GRID */
+  .posts-section { margin-bottom: 3rem; }
+  .posts-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .posts-brand::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: var(--yellow);
+    border: 1.5px solid var(--black);
+    border-radius: 2px;
+  }
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 6px;
+  }
+  .post-item {
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #eee;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  .post-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+  }
+  .post-item:hover img { transform: scale(1.06); }
+
+  /* AI CONTENT GRID */
+  .ai-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 6px;
+  }
+  .ai-item {
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #111;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+  }
+  .ai-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .ai-item:hover img { transform: scale(1.05); opacity: 0.85; }
+  .ai-item-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: rgba(17,16,16,0.45);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--yellow);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .ai-item:hover .ai-item-overlay { opacity: 1; }
+
+  /* VIDEOS */
+  .videos-intro {
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+  .video-section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    margin: 2rem 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .video-section-label::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: var(--yellow);
+    border: 1.5px solid var(--black);
+    border-radius: 2px;
+  }
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .video-wrap {
+    aspect-ratio: 9/16;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1.5px solid var(--black);
+    background: var(--black);
+  }
+  .video-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* EXPERIENCE */
+  .experience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .exp-item {
+    padding: 2.5rem;
+    border-right: 1.5px solid var(--black);
+    border-bottom: 1.5px solid var(--black);
+  }
+  .exp-item:nth-child(even) { border-right: none; }
+  .exp-item:nth-last-child(-n+2) { border-bottom: none; }
+
+  .exp-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--gray-mid);
+    margin-bottom: 0.5rem;
+  }
+  .exp-company {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.25rem;
+  }
+  .exp-role {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--yellow-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--gray);
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.3rem;
+    font-weight: 300;
+  }
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--yellow-dark);
+  }
+
+  /* CONTACT */
+  .contact-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 60vh;
+  }
+  .contact-left {
+    padding: 4rem;
+    border-right: 1.5px solid var(--black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contact-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 0.9;
+    margin-bottom: 1.5rem;
+  }
+  .contact-heading span { color: var(--yellow-dark); }
+  .contact-sub {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 380px;
+  }
+  .contact-right {
+    padding: 4rem;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .contact-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .contact-icon {
+    font-size: 1.5rem;
+    min-width: 2rem;
+  }
+  .contact-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  .contact-value {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+  }
+  .contact-value:hover { color: var(--yellow); }
+
+  /* FOOTER */
+  footer {
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--black);
+    color: rgba(255,255,255,0.4);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+  }
+  footer span { color: var(--yellow); }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    background: none;
+    border: 2px solid var(--yellow);
+    color: var(--yellow);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0.8rem;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+  .fade-up:nth-child(1) { animation-delay: 0.1s; }
+  .fade-up:nth-child(2) { animation-delay: 0.25s; }
+  .fade-up:nth-child(3) { animation-delay: 0.4s; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--black); border-radius: 2px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 3rem 1.5rem; border-right: none; }
+    .hero-right { padding: 2rem 1.5rem; min-height: 300px; }
+    .hero-photo-wrap { width: 240px; height: 290px; }
+    .section-header { padding: 1rem 1.5rem; }
+    .tab-panel { padding: 2rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { border-right: none; border-bottom: 1.5px solid var(--black); }
+    .service-card:last-child { border-bottom: none; }
+    .tools-section { padding: 2rem 1.5rem; }
+    .videos-grid { grid-template-columns: 1fr; }
+    .experience-grid { grid-template-columns: 1fr; }
+    .exp-item { border-right: none !important; }
+    .contact-section { grid-template-columns: 1fr; }
+    .contact-left { padding: 2.5rem 1.5rem; }
+    .contact-right { padding: 2.5rem 1.5rem; }
+    footer { padding: 1rem 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .mood-grid { grid-template-columns: 1fr 1fr; }
+    .posts-grid { grid-template-columns: repeat(3, 1fr); }
+    .ai-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Francis Ordeniza</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag fade-up">✦ Available for Work</div>
+    <h1 class="hero-name fade-up">
+      Francis<br/>
+      <span>Ordeniza</span>
+    </h1>
+    <p class="hero-desc fade-up">
+      Social Media Manager & AI Content Creator helping brands grow, engage, and convert through strategic content marketing. Based in Cagayan de Oro, Philippines.
+    </p>
+    <div class="hero-buttons">
+      <a href="#portfolio" class="btn-primary">View Portfolio</a>
+      <a href="#contact" class="btn-secondary">Hire Me</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years Exp.</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Brands Built</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">0→K</div>
+        <div class="stat-label">Followers Grown</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-border"></div>
+      <img class="hero-photo" src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780807903/Untitled_design_1_rnxcbd.png" alt="Francis Ordeniza"/>
+      <div class="hero-photo-label">SMM · AI Content · CDO 🇵🇭</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Services</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">📱</span>
+      <div class="service-name">Social Media Management</div>
+      <p class="service-desc">Full-funnel social media strategy, content calendars, posting schedules, and community management to grow your audience and drive engagement.</p>
+      <div class="service-tags">
+        <span class="tag">Strategy</span>
+        <span class="tag">Scheduling</span>
+        <span class="tag">Growth</span>
+        <span class="tag">Community</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🤖</span>
+      <div class="service-name">AI Content Creation</div>
+      <p class="service-desc">AI-generated visuals, short-form video content, and creative campaigns optimized for engagement, reach, and platform algorithms.</p>
+      <div class="service-tags">
+        <span class="tag">AI Visuals</span>
+        <span class="tag">Reels</span>
+        <span class="tag">Scripts</span>
+        <span class="tag">Shorts</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🎨</span>
+      <div class="service-name">Branding & Design</div>
+      <p class="service-desc">Brand boards, mood boards, social media graphics, and visual identity systems that make your brand stand out across every platform.</p>
+      <div class="service-tags">
+        <span class="tag">Brand Boards</span>
+        <span class="tag">Graphics</span>
+        <span class="tag">Canva</span>
+        <span class="tag">Photoshop</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section>
+  <div class="tools-section">
+    <div style="font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-mid);margin-bottom:0.5rem;">Tools & Platforms</div>
+    <div class="tools-grid">
+      <span class="tool-pill">Canva</span>
+      <span class="tool-pill">Photoshop</span>
+      <span class="tool-pill">Premiere Pro</span>
+      <span class="tool-pill">After Effects</span>
+      <span class="tool-pill">CapCut</span>
+      <span class="tool-pill">Notion</span>
+      <span class="tool-pill">Trello</span>
+      <span class="tool-pill">Slack</span>
+      <span class="tool-pill">Calendly</span>
+      <span class="tool-pill">Later</span>
+      <span class="tool-pill">Airtable</span>
+      <span class="tool-pill">Meta Business Suite</span>
+      <span class="tool-pill">Google Workspace</span>
+      <span class="tool-pill">SolidWorks</span>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Portfolio</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="portfolio-tabs">
+    <button class="tab-btn active" onclick="showTab('mood')">Mood Boards</button>
+    <button class="tab-btn" onclick="showTab('posts')">Social Media Posts</button>
+    <button class="tab-btn" onclick="showTab('ai')">AI Content</button>
+    <button class="tab-btn" onclick="showTab('videos')">Videos & Reels</button>
+  </div>
+
+  <!-- MOOD BOARDS -->
+  <div id="tab-mood" class="tab-panel active">
+    <p style="font-size:0.82rem;color:var(--gray-mid);font-family:'DM Mono',monospace;letter-spacing:0.06em;margin-bottom:1.5rem;">Brand identity & mood board designs for client projects.</p>
+    <div class="mood-grid">
+      <div class="mood-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804975/crest_and_key_brand_board_ivvury.png" alt="Crest & Key Brand Board" onclick="openLightbox(this.src)"/></div>
+      <div class="mood-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804972/Ember_and_Oak_Brand_Board_guvtbw.png" alt="Ember & Oak Brand Board" onclick="openLightbox(this.src)"/></div>
+      <div class="mood-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804854/1_vyuzas.png" alt="Fleur & Co Brand Board" onclick="openLightbox(this.src)"/></div>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;">
+      <div style="background:var(--black);color:var(--yellow);padding:0.6rem 1.2rem;border-radius:2px;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;">Crest &amp; Key</div>
+      <div style="background:var(--black);color:var(--yellow);padding:0.6rem 1.2rem;border-radius:2px;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;">Ember &amp; Oak</div>
+      <div style="background:var(--black);color:var(--yellow);padding:0.6rem 1.2rem;border-radius:2px;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;">Fleur &amp; Co.</div>
+    </div>
+  </div>
+
+  <!-- SOCIAL MEDIA POSTS -->
+  <div id="tab-posts" class="tab-panel">
+    <div class="posts-section">
+      <div class="posts-brand">Fleur &amp; Co.</div>
+      <div class="posts-grid">
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804842/1_mfot8j.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804842/2_lnojai.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804842/3_yhfbkd.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804843/4_ihqhud.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804843/5_vqgiei.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804843/6_pxi1mo.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804840/7_jghbey.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804841/8_grlgru.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804841/10_jjebzf.png" alt="" onclick="openLightbox(this.src)"/></div>
+      </div>
+    </div>
+    <div class="posts-section">
+      <div class="posts-brand">Crest &amp; Key</div>
+      <div class="posts-grid">
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804795/crest_and_key_posting_4_sqvzpj.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804794/crest_and_keyt_cdjilx.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804865/3_issz2m.png" alt="" onclick="openLightbox(this.src)"/></div>
+      </div>
+    </div>
+    <div class="posts-section">
+      <div class="posts-brand">Ember &amp; Oak</div>
+      <div class="posts-grid">
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804794/ember_and_oak_postings_1_tg6f1m.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804743/1_tcnjmn.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804743/2_ncqjlt.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804743/3_osqcro.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804743/4_w3uqf2.png" alt="" onclick="openLightbox(this.src)"/></div>
+        <div class="post-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780804743/5_m3zmw5.png" alt="" onclick="openLightbox(this.src)"/></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI CONTENT -->
+  <div id="tab-ai" class="tab-panel">
+    <p style="font-size:0.82rem;color:var(--gray-mid);font-family:'DM Mono',monospace;letter-spacing:0.06em;margin-bottom:1.5rem;">AI-generated visuals and imagery created for clients and campaigns.</p>
+    <div class="ai-grid">
+      <div class="ai-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780806016/openart-image_1773705085834_d4483e20_1773705085879_29064cd3_k9cz97.png" alt="AI Content" onclick="openLightbox(this.src)"/><div class="ai-item-overlay">View</div></div>
+      <div class="ai-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780806027/openart-image_1773705162541_f5ff5e75_1773705163011_079b074d_l2e2uw.png" alt="AI Content" onclick="openLightbox(this.src)"/><div class="ai-item-overlay">View</div></div>
+      <div class="ai-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780806017/openart-image_1773695676717_fdb4d68f_1773695676768_b2ae0931_azp0xd.png" alt="AI Content" onclick="openLightbox(this.src)"/><div class="ai-item-overlay">View</div></div>
+      <div class="ai-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780806017/openart-image_1773693988387_f3af7549_1773693988450_950586af_1_mzfjih.png" alt="AI Content" onclick="openLightbox(this.src)"/><div class="ai-item-overlay">View</div></div>
+      <div class="ai-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780806028/openart-image_1773701960987_432a129a_1773701961086_0cff38f7_jf3sdl.png" alt="AI Content" onclick="openLightbox(this.src)"/><div class="ai-item-overlay">View</div></div>
+      <div class="ai-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780806017/openart-image_1773702515913_036fd564_1773702516243_074c84d8_cejn03.png" alt="AI Content" onclick="openLightbox(this.src)"/><div class="ai-item-overlay">View</div></div>
+      <div class="ai-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780806018/openart-image_1773699971179_0c52f068_1773699971218_b0aab419_xhzkjh.png" alt="AI Content" onclick="openLightbox(this.src)"/><div class="ai-item-overlay">View</div></div>
+      <div class="ai-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780806023/openart-image_1773699275374_ff42e349_1773699275477_77ecb467_shlzp5.png" alt="AI Content" onclick="openLightbox(this.src)"/><div class="ai-item-overlay">View</div></div>
+      <div class="ai-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780806022/openart-image_1773699438566_cd17f009_1773699439090_2e46b33d_jizvb4.png" alt="AI Content" onclick="openLightbox(this.src)"/><div class="ai-item-overlay">View</div></div>
+      <div class="ai-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780806019/openart-image_1773696017759_a838cb7d_1773696017972_79cb03e5_aw96qn.png" alt="AI Content" onclick="openLightbox(this.src)"/><div class="ai-item-overlay">View</div></div>
+      <div class="ai-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780806019/openart-image_1773430083802_139a7f06_1773430083889_1ec8060d_1_f8tmfa.png" alt="AI Content" onclick="openLightbox(this.src)"/><div class="ai-item-overlay">View</div></div>
+      <div class="ai-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780806019/openart-image_1773435632353_de07bfa2_1773435632420_3cdfc4ec_lmjf5i.png" alt="AI Content" onclick="openLightbox(this.src)"/><div class="ai-item-overlay">View</div></div>
+      <div class="ai-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780806021/openart-image_1773698019759_3f16d511_1773698019944_3e2f48c7_1_qzolio.png" alt="AI Content" onclick="openLightbox(this.src)"/><div class="ai-item-overlay">View</div></div>
+      <div class="ai-item"><img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780806019/openart-image_1773694515990_9b074ae7_1773694516603_1eb447df_1_lwfyrq.png" alt="AI Content" onclick="openLightbox(this.src)"/><div class="ai-item-overlay">View</div></div>
+    </div>
+  </div>
+
+  <!-- VIDEOS -->
+  <div id="tab-videos" class="tab-panel">
+    <p class="videos-intro">Short-form video content, reels, and AI-generated video productions.</p>
+
+    <div class="video-section-label">AI Content Videos</div>
+    <div class="videos-grid">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/t5_yqpPySf4" allowfullscreen loading="lazy" title="AI Content Video 1"></iframe>
+      </div>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/ugHzvaVzcZY" allowfullscreen loading="lazy" title="AI Content Video 2"></iframe>
+      </div>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/dD3WHBfoW-8" allowfullscreen loading="lazy" title="AI Content Video 3"></iframe>
+      </div>
+    </div>
+
+    <div class="video-section-label">Reels</div>
+    <div class="videos-grid">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/XXb9RIr2csE" allowfullscreen loading="lazy" title="Reel 1"></iframe>
+      </div>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/6YqH_lVV0GY" allowfullscreen loading="lazy" title="Reel 2"></iframe>
+      </div>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/F1DdHb--AWc" allowfullscreen loading="lazy" title="Reel 3"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="experience-grid">
+    <div class="exp-item">
+      <div class="exp-period">Jan 2026 – May 2026</div>
+      <div class="exp-company">Mirabelle Agency</div>
+      <div class="exp-role">Social Media Specialist</div>
+      <ul class="exp-bullets">
+        <li>Managed and scaled Instagram accounts from 0 to thousands of followers</li>
+        <li>Created AI-generated image and video content optimized for growth</li>
+        <li>Developed high-converting content strategies and posting schedules</li>
+        <li>Wrote scripts and produced high-performing short-form video content</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-period">2022 – 2025</div>
+      <div class="exp-company">Freelance</div>
+      <div class="exp-role">SMM Specialist & Content Creator</div>
+      <ul class="exp-bullets">
+        <li>Social media management, content creation, branding & growth strategy</li>
+        <li>Marketing materials, graphics, AI content, and short-form video</li>
+        <li>Helped brands improve audience engagement and online presence</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-period">2021 – 2022</div>
+      <div class="exp-company">MJR Cars</div>
+      <div class="exp-role">Social Media Strategist</div>
+      <ul class="exp-bullets">
+        <li>Created marketing materials for vehicle sales campaigns</li>
+        <li>Managed social media content and customer engagement</li>
+        <li>Strengthened brand visibility through digital marketing</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-period">2018 – 2020</div>
+      <div class="exp-company">KodakeRS</div>
+      <div class="exp-role">Videographer & Video Editor</div>
+      <ul class="exp-bullets">
+        <li>Same-day event coverage and edits for LGUs and organizations</li>
+        <li>Covered the 2020 World Teachers' Day national event</li>
+        <li>Handled filming, editing, motion graphics, and final delivery</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-section">
+    <div class="contact-left">
+      <div style="font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-mid);margin-bottom:1rem;">04 — Get In Touch</div>
+      <h2 class="contact-heading">Let's<br/>Work<br/><span>Together.</span></h2>
+      <p class="contact-sub">Have a project in mind? I'd love to hear about it. Whether you need social media management, AI content, or a full brand strategy — let's talk.</p>
+    </div>
+    <div class="contact-right">
+      <div class="contact-item">
+        <span class="contact-icon">✉️</span>
+        <div>
+          <span class="contact-label">Email</span>
+          <a class="contact-value" href="mailto:francis.ordeniza24@gmail.com">francis.ordeniza24@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">📞</span>
+        <div>
+          <span class="contact-label">Phone</span>
+          <a class="contact-value" href="tel:+639271201820">+63 927 120 1820</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">💼</span>
+        <div>
+          <span class="contact-label">LinkedIn</span>
+          <a class="contact-value" href="https://linkedin.com/in/francis-ordeniza-2b440316a" target="_blank">francis-ordeniza</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">📍</span>
+        <div>
+          <span class="contact-label">Location</span>
+          <span class="contact-value">Cagayan de Oro, Philippines</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Francis Ordeniza</span>
+  <span>Built for <span>Vercel</span> · <span>CDO 🇵🇭</span></span>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕ Close</button>
+  <img id="lightbox-img" src="" alt="Portfolio Image"/>
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
