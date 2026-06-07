@@ -36,8 +36,8 @@ nav{
 
 /* ── HERO ── */
 .hero{
-  position:relative;background:#fff;overflow:hidden;
-  min-height:100vh;display:flex;flex-direction:column;
+  position:relative;background:#fff;
+  display:flex;flex-direction:column;
 }
 /* grid bg */
 .hero::before{
@@ -46,69 +46,84 @@ nav{
   background-size:52px 52px;pointer-events:none;z-index:0;
 }
 
-/* top area: roles top-right, name big center */
+/* top bar: roles top-right */
 .hero-top{
   position:relative;z-index:2;
-  padding:2.5rem 5vw 0;
-  display:flex;justify-content:flex-end;align-items:flex-start;
+  padding:2rem 5vw 0;
+  display:flex;justify-content:flex-end;
 }
-.hero-roles{text-align:right;}
 .hero-roles p{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(1.1rem,2.5vw,1.8rem);
-  letter-spacing:.12em;line-height:1.1;color:var(--black);
+  font-size:clamp(1rem,2.2vw,1.6rem);
+  letter-spacing:.14em;line-height:1.1;color:var(--black);text-align:right;
 }
 
-/* big name row */
-.hero-name-row{
+/* ── NAME + PHOTO overlap block ── */
+.hero-name-block{
   position:relative;z-index:2;
-  padding:0 3vw;margin-top:-.5rem;
+  padding:0 3vw;
+  /* no overflow:hidden so photo can stick up above */
+}
+.hero-name-row{
+  position:relative;
   line-height:.88;
+  /* photo will sit on top via absolute */
 }
 .hero-name-row h1{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(5rem,14vw,13rem);
+  font-size:clamp(4.5rem,13.5vw,12.5rem);
   letter-spacing:.02em;color:var(--black);
-  white-space:nowrap;overflow:hidden;
+  white-space:nowrap;
+  user-select:none;
 }
-/* yellow horizontal rule under name */
+
+/* "Hi, I'm" cursive — anchored to name block, over the FRA */
+.hero-hi{
+  position:absolute;
+  top:-.6em;   /* sit above baseline of name */
+  left:.02em;  /* aligned with F of FRANCIS */
+  font-family:Georgia,serif;font-style:italic;
+  font-size:clamp(2rem,4.5vw,4.5rem);
+  color:var(--yellow);font-weight:400;
+  transform:rotate(-8deg);
+  pointer-events:none;
+  z-index:10;
+  line-height:1;
+}
+
+/* photo absolutely placed, center of name row, overlapping top & bottom */
+.hero-photo-abs{
+  position:absolute;
+  bottom:0;          /* feet sit on the rule */
+  left:50%;
+  transform:translateX(-50%);
+  z-index:5;         /* above name text */
+  width:clamp(180px,20vw,310px);
+  pointer-events:none;
+}
+.hero-photo-abs img{
+  width:100%;display:block;object-fit:contain;
+}
+
+/* yellow rule — no border */
 .hero-rule{
   position:relative;z-index:2;
   height:5px;background:var(--yellow);
-  margin:0 3vw;border:1.5px solid var(--black);
+  margin:0 3vw;
 }
 
-/* photo + text row */
+/* body text row — sits below rule, photo overlaps down into it */
 .hero-body{
   position:relative;z-index:2;
-  display:grid;grid-template-columns:1fr auto 1fr;
-  gap:0;padding:0 5vw 3rem;align-items:end;flex:1;
+  display:grid;grid-template-columns:1fr 1fr;
+  padding:1.5rem 5vw 3rem;
+  /* leave centre gap for photo foot */
+  column-gap:clamp(180px,22vw,340px);
 }
-.hero-body-left,.hero-body-right{padding:2rem 1.5rem 0;}
 .hero-body-left p,.hero-body-right p{
-  font-size:clamp(.8rem,1.1vw,.95rem);line-height:1.75;color:var(--gray);font-weight:300;
+  font-size:clamp(.78rem,1vw,.92rem);line-height:1.78;color:var(--gray);font-weight:300;
 }
 .hero-body-right{text-align:right;}
-
-/* photo centered */
-.hero-photo-col{
-  display:flex;justify-content:center;align-items:flex-end;
-  position:relative;
-}
-.hero-photo-col img{
-  width:clamp(200px,22vw,340px);
-  display:block;object-fit:cover;
-  position:relative;z-index:2;
-}
-
-/* hi cursive overlay */
-.hero-hi{
-  position:absolute;top:-1.5rem;left:-2.5rem;
-  font-family:Georgia,serif;font-style:italic;
-  font-size:clamp(2.5rem,5vw,5rem);
-  color:var(--yellow);font-weight:400;z-index:3;
-  transform:rotate(-5deg);pointer-events:none;
-}
 
 /* contact bar */
 .hero-contact-bar{
@@ -280,23 +295,25 @@ footer span.y{color:var(--yellow);}
     </div>
   </div>
 
-  <!-- BIG NAME -->
-  <div class="hero-name-row">
-    <h1>FRANCIS ORDENIZA</h1>
+  <!-- NAME BLOCK with photo overlapping -->
+  <div class="hero-name-block">
+    <div class="hero-name-row">
+      <!-- "Hi, I'm" slanted over the FRA -->
+      <div class="hero-hi">Hi, I'm</div>
+      <h1>FRANCIS ORDENIZA</h1>
+      <!-- photo sits centered, overlapping the name + rule below -->
+      <div class="hero-photo-abs">
+        <img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780807903/Untitled_design_1_rnxcbd.png" alt="Francis Ordeniza"/>
+      </div>
+    </div>
   </div>
   <div class="hero-rule"></div>
 
-  <!-- photo + text -->
+  <!-- text row below rule, photo foot overlaps down -->
   <div class="hero-body">
     <div class="hero-body-left">
       <p>Hey there, I'm Francis! This portfolio showcases my skills as a Social Media Manager and Content Creator. If any of my projects catch your eye, or if you have questions, don't hesitate to reach out!</p>
     </div>
-
-    <div class="hero-photo-col">
-      <div class="hero-hi">Hi, I'm</div>
-      <img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780807903/Untitled_design_1_rnxcbd.png" alt="Francis Ordeniza"/>
-    </div>
-
     <div class="hero-body-right">
       <p>Helping businesses grow, engage, and convert through strategic social media marketing.</p>
       <br/>
@@ -434,13 +451,26 @@ footer span.y{color:var(--yellow);}
     <!-- VIDEOS -->
     <div class="port-section">
       <div class="port-section-title">Videos & Reels</div>
-      <p class="vid-note">Short-form video content, AI video productions, and social media reels.</p>
+      <p class="vid-note">Short-form video content, AI video productions, motion graphics, same-day edits, and social media reels.</p>
 
       <div class="port-sub">AI Content Videos</div>
       <div class="videos-grid">
         <div class="video-wrap"><iframe src="https://www.youtube.com/embed/t5_yqpPySf4" allowfullscreen loading="lazy" title="AI Video 1"></iframe></div>
         <div class="video-wrap"><iframe src="https://www.youtube.com/embed/ugHzvaVzcZY" allowfullscreen loading="lazy" title="AI Video 2"></iframe></div>
         <div class="video-wrap"><iframe src="https://www.youtube.com/embed/dD3WHBfoW-8" allowfullscreen loading="lazy" title="AI Video 3"></iframe></div>
+      </div>
+
+      <div class="port-sub" style="margin-top:2rem;">Motion Graphics</div>
+      <div class="videos-grid" style="grid-template-columns:repeat(2,1fr);">
+        <div class="video-wrap" style="aspect-ratio:16/9;"><iframe src="https://www.youtube.com/embed/mLrjkj9KRFE" allowfullscreen loading="lazy" title="Motion Graphics 1"></iframe></div>
+        <div class="video-wrap" style="aspect-ratio:16/9;"><iframe src="https://www.youtube.com/embed/BKxaSlf7m80" allowfullscreen loading="lazy" title="Motion Graphics 2"></iframe></div>
+      </div>
+
+      <div class="port-sub" style="margin-top:2rem;">Same Day Edits</div>
+      <div class="videos-grid" style="grid-template-columns:repeat(3,1fr);">
+        <div class="video-wrap" style="aspect-ratio:16/9;"><iframe src="https://www.youtube.com/embed/vhdmlNFvsGc" allowfullscreen loading="lazy" title="Same Day Edit 1"></iframe></div>
+        <div class="video-wrap" style="aspect-ratio:16/9;"><iframe src="https://www.youtube.com/embed/C4ow3e2Y1Hs" allowfullscreen loading="lazy" title="Same Day Edit 2"></iframe></div>
+        <div class="video-wrap" style="aspect-ratio:16/9;"><iframe src="https://www.youtube.com/embed/jDpIgzp56bg" allowfullscreen loading="lazy" title="Same Day Edit 3"></iframe></div>
       </div>
 
       <div class="port-sub" style="margin-top:2rem;">Reels</div>
