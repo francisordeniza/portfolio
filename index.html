@@ -91,14 +91,19 @@ nav{
   line-height:1;
 }
 
-/* photo absolutely placed, center of name row, overlapping top & bottom */
+/* =====================================================
+   PHOTO SIZE — change --photo-w to resize the photo
+   e.g. 260px = smaller, 380px = larger
+   ===================================================== */
 .hero-photo-abs{
+  --photo-w: 300px;        /* ← ADJUST THIS to resize photo */
+
   position:absolute;
-  bottom:0;          /* feet sit on the rule */
+  bottom:-140px;           /* how far it drops BELOW the yellow rule */
   left:50%;
   transform:translateX(-50%);
-  z-index:5;         /* above name text */
-  width:clamp(180px,20vw,310px);
+  z-index:8;               /* above name text, rule, body text */
+  width:var(--photo-w);
   pointer-events:none;
 }
 .hero-photo-abs img{
@@ -112,24 +117,23 @@ nav{
   margin:0 3vw;
 }
 
-/* body text row — sits below rule, photo overlaps down into it */
+/* body text row — photo overlaps down through this into contact bar */
 .hero-body{
   position:relative;z-index:2;
   display:grid;grid-template-columns:1fr 1fr;
-  padding:1.5rem 5vw 3rem;
-  /* leave centre gap for photo foot */
-  column-gap:clamp(180px,22vw,340px);
+  padding:2rem 5vw 2.5rem;
+  column-gap:clamp(160px,22vw,340px);
 }
 .hero-body-left p,.hero-body-right p{
   font-size:clamp(.78rem,1vw,.92rem);line-height:1.78;color:var(--gray);font-weight:300;
 }
 .hero-body-right{text-align:right;}
 
-/* contact bar */
+/* contact bar — z-index BELOW photo (z-index:1) so photo sits on top */
 .hero-contact-bar{
-  position:relative;z-index:2;
+  position:relative;z-index:1;
   display:flex;justify-content:space-between;align-items:center;
-  padding:.75rem 5vw;border-top:1.5px solid var(--black);
+  padding:1.2rem 5vw;border-top:1.5px solid var(--black);
   font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.1em;
   flex-wrap:wrap;gap:.5rem;
 }
