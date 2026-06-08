@@ -57,30 +57,28 @@ nav{
   letter-spacing:.14em;line-height:1.1;color:var(--black);text-align:right;
 }
 
-/* ── NAME BLOCK — fixed size, rule hugs text ── */
+/* ── NAME BLOCK ── */
 .hero-name-block{
   position:relative;z-index:2;
-  padding:0 3vw;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  padding:0 5vw; /* same as hero-body — name and rule align to body text edges */
 }
 .hero-name-row{
   position:relative;
   line-height:.88;
-  display:inline-block; /* shrink-wraps to text width */
 }
 .hero-name-row h1{
   font-family:'Bebas Neue',sans-serif;
-  font-size:160px;          /* FIXED — never changes with zoom/viewport */
+  font-size:11.6vw; /* scales with viewport so text always fills the 90vw container */
   letter-spacing:.02em;
   color:var(--black);
   white-space:nowrap;
   user-select:none;
   display:block;
+  width:100%;
+  text-align:left;
 }
 
-/* "Hi, I'm" cursive — over the FRA */
+/* "Hi, I'm" cursive */
 .hero-hi{
   position:absolute;
   top:-.45em;
@@ -94,11 +92,11 @@ nav{
   line-height:1;
 }
 
-/* Yellow rule — stretches exactly as wide as the h1 text */
+/* Yellow rule — full width within the same 5vw padding */
 .hero-rule{
   height:5px;
   background:var(--yellow);
-  width:100%; /* fills .hero-name-row which is inline-block = text width */
+  width:100%;
   display:block;
 }
 
@@ -294,13 +292,13 @@ footer span.y{color:var(--yellow);}
     </div>
   </div>
 
-  <!-- NAME BLOCK — inline-block shrink-wraps to text, rule matches width -->
+  <!-- NAME BLOCK — inline-block shrink-wraps to text -->
   <div class="hero-name-block">
-    <div class="hero-name-row">
+    <div class="hero-name-row" id="heroNameRow">
       <div class="hero-hi">Hi, I'm</div>
       <h1>FRANCIS ORDENIZA</h1>
-      <div class="hero-rule"></div>
     </div>
+    <div class="hero-rule" id="heroRule"></div>
   </div>
 
   <!-- text row below rule -->
