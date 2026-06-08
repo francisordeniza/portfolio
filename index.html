@@ -39,7 +39,6 @@ nav{
   position:relative;background:#fff;
   display:flex;flex-direction:column;
 }
-/* grid bg */
 .hero::before{
   content:'';position:absolute;inset:0;
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
@@ -58,32 +57,36 @@ nav{
   letter-spacing:.14em;line-height:1.1;color:var(--black);text-align:right;
 }
 
-/* ── NAME + PHOTO overlap block ── */
+/* ── NAME BLOCK — fixed size, rule hugs text ── */
 .hero-name-block{
   position:relative;z-index:2;
   padding:0 3vw;
-  /* no overflow:hidden so photo can stick up above */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 .hero-name-row{
   position:relative;
   line-height:.88;
-  /* photo will sit on top via absolute */
+  display:inline-block; /* shrink-wraps to text width */
 }
 .hero-name-row h1{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(4.5rem,13.5vw,12.5rem);
-  letter-spacing:.02em;color:var(--black);
+  font-size:160px;          /* FIXED — never changes with zoom/viewport */
+  letter-spacing:.02em;
+  color:var(--black);
   white-space:nowrap;
   user-select:none;
+  display:block;
 }
 
-/* "Hi, I'm" cursive — anchored to name block, over the FRA */
+/* "Hi, I'm" cursive — over the FRA */
 .hero-hi{
   position:absolute;
-  top:-.6em;   /* sit above baseline of name */
-  left:.02em;  /* aligned with F of FRANCIS */
+  top:-.45em;
+  left:.02em;
   font-family:Georgia,serif;font-style:italic;
-  font-size:clamp(2rem,4.5vw,4.5rem);
+  font-size:4.5rem;
   color:var(--yellow);font-weight:400;
   transform:rotate(-8deg);
   pointer-events:none;
@@ -91,33 +94,15 @@ nav{
   line-height:1;
 }
 
-/* =====================================================
-   PHOTO SIZE — change --photo-w to resize the photo
-   e.g. 260px = smaller, 380px = larger
-   ===================================================== */
-.hero-photo-abs{
-  --photo-w: 300px;        /* ← ADJUST THIS to resize photo */
-
-  position:absolute;
-  bottom:-140px;           /* how far it drops BELOW the yellow rule */
-  left:50%;
-  transform:translateX(-50%);
-  z-index:8;               /* above name text, rule, body text */
-  width:var(--photo-w);
-  pointer-events:none;
-}
-.hero-photo-abs img{
-  width:100%;display:block;object-fit:contain;
-}
-
-/* yellow rule — no border */
+/* Yellow rule — stretches exactly as wide as the h1 text */
 .hero-rule{
-  position:relative;z-index:2;
-  height:5px;background:var(--yellow);
-  margin:0 3vw;
+  height:5px;
+  background:var(--yellow);
+  width:100%; /* fills .hero-name-row which is inline-block = text width */
+  display:block;
 }
 
-/* body text row — photo overlaps down through this into contact bar */
+/* body text row */
 .hero-body{
   position:relative;z-index:2;
   display:grid;grid-template-columns:1fr 1fr;
@@ -129,19 +114,34 @@ nav{
 }
 .hero-body-right{text-align:right;}
 
-/* contact bar — z-index BELOW photo (z-index:1) so photo sits on top */
+/* ── CONTACT BAR ── */
 .hero-contact-bar{
-  position:relative;z-index:1;
+  position:relative;z-index:2;
   display:flex;justify-content:space-between;align-items:center;
   padding:1.2rem 5vw;border-top:1.5px solid var(--black);
   font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.1em;
   flex-wrap:wrap;gap:.5rem;
+  overflow:visible;
 }
 .hero-contact-bar a,.hero-contact-bar span{
   color:var(--black);text-decoration:none;border:1px solid var(--black);
   padding:.3rem .8rem;border-radius:30px;transition:all .2s;
 }
 .hero-contact-bar a:hover{background:var(--black);color:var(--yellow);}
+
+/* Photo sits ON TOP of the contact bar border — centered, bottom at bar top edge */
+.hero-photo-bar{
+  width:300px;
+  position:absolute;
+  bottom:100%; /* bottom of photo = top of contact bar = sits right on the border */
+  left:50%;
+  transform:translateX(-50%);
+  pointer-events:none;
+  z-index:10;
+}
+.hero-photo-bar img{
+  width:100%;display:block;object-fit:contain;
+}
 
 /* ── SECTION SHARED ── */
 section{border-top:2px solid var(--black);}
@@ -170,9 +170,8 @@ section{border-top:2px solid var(--black);}
 .tools-pills{display:flex;flex-wrap:wrap;gap:.5rem;}
 .pill{background:var(--black);color:var(--yellow);font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.07em;padding:.35rem .85rem;border-radius:2px;}
 
-/* ── PORTFOLIO — one big scroll ── */
+/* ── PORTFOLIO ── */
 .portfolio-inner{padding:3rem 5vw;}
-
 .port-section{margin-bottom:4rem;}
 .port-section-title{
   font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.06em;
@@ -187,13 +186,11 @@ section{border-top:2px solid var(--black);}
 }
 .port-sub{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-mid);margin-bottom:1rem;margin-top:1.5rem;}
 
-/* mood boards — full width, natural height */
 .mood-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
 .mood-item{background:#eee;overflow:hidden;cursor:pointer;border-radius:3px;}
 .mood-item img{width:100%;height:auto;display:block;transition:transform .4s;}
 .mood-item:hover img{transform:scale(1.03);}
 
-/* posts grid — square crops but 3-col tight */
 .posts-brand-label{
   font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.06em;
   margin:1.5rem 0 .75rem;
@@ -205,7 +202,6 @@ section{border-top:2px solid var(--black);}
 .post-item img{width:100%;height:auto;display:block;transition:transform .3s;}
 .post-item:hover img{transform:scale(1.04);}
 
-/* ai grid */
 .ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px;}
 .ai-item{background:#111;overflow:hidden;cursor:pointer;border-radius:2px;position:relative;}
 .ai-item img{width:100%;height:auto;display:block;transition:transform .3s,opacity .3s;}
@@ -213,7 +209,6 @@ section{border-top:2px solid var(--black);}
 .ai-ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;background:rgba(15,15,15,.4);font-family:'DM Mono',monospace;font-size:.65rem;color:var(--yellow);letter-spacing:.1em;}
 .ai-item:hover .ai-ov{opacity:1;}
 
-/* videos */
 .vid-note{font-size:.82rem;color:var(--gray-mid);font-family:'DM Mono',monospace;margin-bottom:1.5rem;}
 .videos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
 .video-wrap{aspect-ratio:9/16;border-radius:4px;overflow:hidden;border:1.5px solid var(--black);background:var(--black);}
@@ -261,8 +256,8 @@ footer span.y{color:var(--yellow);}
   .nav-links{display:none;}
   .hero-body{grid-template-columns:1fr;text-align:center;}
   .hero-body-right{text-align:center;}
-  .hero-photo-col{margin:1rem auto 0;}
   .hero-name-row h1{font-size:clamp(3.5rem,18vw,7rem);}
+  .hero-photo-bar{width:200px;margin-top:-150px;}
   .services-grid{grid-template-columns:1fr;}
   .svc{border-right:none;border-bottom:1.5px solid var(--black);}
   .svc:last-child{border-bottom:none;}
@@ -299,23 +294,16 @@ footer span.y{color:var(--yellow);}
     </div>
   </div>
 
-  
-  <!-- NAME BLOCK with photo overlapping -->
+  <!-- NAME BLOCK — inline-block shrink-wraps to text, rule matches width -->
   <div class="hero-name-block">
     <div class="hero-name-row">
-      <!-- "Hi, I'm" slanted over the FRA -->
       <div class="hero-hi">Hi, I'm</div>
-      <h1 align="center">FRANCIS ORDENIZA</h1>
+      <h1>FRANCIS ORDENIZA</h1>
       <div class="hero-rule"></div>
-
-      <!-- photo sits centered, overlapping the name + rule below -->
-    <div class="hero-photo-abs">
-        <img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780807903/Untitled_design_1_rnxcbd.png" alt="Francis Ordeniza"/>
-      </div>
     </div>
   </div>
 
-  <!-- text row below rule, photo foot overlaps down -->
+  <!-- text row below rule -->
   <div class="hero-body">
     <div class="hero-body-left">
       <p>Hey there, I'm Francis! This portfolio showcases my skills as a Social Media Manager and Content Creator. If any of my projects catch your eye, or if you have questions, don't hesitate to reach out!</p>
@@ -327,11 +315,16 @@ footer span.y{color:var(--yellow);}
     </div>
   </div>
 
-  <!-- contact bar -->
+  <!-- contact bar — photo floats ON TOP of the bar border, centered -->
   <div class="hero-contact-bar">
     <a href="mailto:francis.ordeniza24@gmail.com">francis.ordeniza24@gmail.com</a>
     <a href="tel:+639271201820">+63 927 120 1820</a>
     <a href="https://www.facebook.com/franzordz/" target="_blank">www.facebook.com/franzordz/</a>
+
+    <!-- Photo anchored to contact bar, bottom on the bar's top border -->
+    <div class="hero-photo-bar">
+      <img src="https://res.cloudinary.com/dm9e0glxm/image/upload/q_auto/f_auto/v1780807903/Untitled_design_1_rnxcbd.png" alt="Francis Ordeniza"/>
+    </div>
   </div>
 
 </section>
@@ -364,7 +357,6 @@ footer span.y{color:var(--yellow);}
     </div>
   </div>
 
-  <!-- Tools -->
   <div class="tools-wrap" style="border-top:1.5px solid var(--black);">
     <div class="tools-label">Tools & Platforms</div>
     <div class="tools-pills">
@@ -386,7 +378,6 @@ footer span.y{color:var(--yellow);}
   </div>
   <div class="portfolio-inner">
 
-    <!-- MOOD BOARDS -->
     <div class="port-section">
       <div class="port-section-title">Branding / Mood Boards</div>
       <p style="font-size:.82rem;color:var(--gray-mid);font-family:'DM Mono',monospace;margin-bottom:1.25rem;">Brand boards and visual identity designs created for client projects.</p>
@@ -397,7 +388,6 @@ footer span.y{color:var(--yellow);}
       </div>
     </div>
 
-    <!-- SOCIAL MEDIA POSTS -->
     <div class="port-section">
       <div class="port-section-title">Social Media Postings</div>
 
@@ -432,7 +422,6 @@ footer span.y{color:var(--yellow);}
       </div>
     </div>
 
-    <!-- AI CONTENT -->
     <div class="port-section">
       <div class="port-section-title">AI Content</div>
       <p style="font-size:.82rem;color:var(--gray-mid);font-family:'DM Mono',monospace;margin-bottom:1.25rem;">AI-generated visuals and imagery created for clients and campaigns.</p>
@@ -454,7 +443,6 @@ footer span.y{color:var(--yellow);}
       </div>
     </div>
 
-    <!-- VIDEOS -->
     <div class="port-section">
       <div class="port-section-title">Videos & Reels</div>
       <p class="vid-note">Short-form video content, AI video productions, motion graphics, same-day edits, and social media reels.</p>
@@ -487,7 +475,7 @@ footer span.y{color:var(--yellow);}
       </div>
     </div>
 
-  </div><!-- /portfolio-inner -->
+  </div>
 </section>
 
 <!-- ═══════════════ EXPERIENCE ═══════════════ -->
@@ -564,13 +552,11 @@ footer span.y{color:var(--yellow);}
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <span>© 2026 <span class="y">Francis Ordeniza</span></span>
   <span>Social Media Manager · AI Content Creator · <span class="y">CDO 🇵🇭</span></span>
 </footer>
 
-<!-- LIGHTBOX -->
 <div class="lbx" id="lbx" onclick="closeLb()">
   <button class="lbx-close" onclick="closeLb()">✕ Close</button>
   <img id="lbx-img" src="" alt=""/>
